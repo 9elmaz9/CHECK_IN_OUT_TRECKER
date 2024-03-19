@@ -1,0 +1,35 @@
+CREATE TABLE IF NOT EXISTS EventLog
+(
+
+    LOGIN_ID   INT AUTO_INCREMENT PRIMARY KEY,
+    USER_ID    INT NOT NULL,
+    EVENT_DATE DATE,
+    CHECK_IN   TIME,
+    CHECK_OUT  TIME,
+    FOREIGN KEY (USER_ID) REFERENCES User (USER_ID)
+
+
+    );
+
+
+
+
+INSERT INTO  EventLog( USER_ID, EVENT_DATE, CHECK_IN, CHECK_OUT)
+VALUES
+    (1, '2024-03-18', '09:00', '17:00'),
+    (2, '2024-03-18', '10:00', NULL),
+    (3, '2024-03-18', '11:00', NULL),
+    (4, '2023-11-05', '6:30', NULL),
+    (5, '2024-01-10', '7:00', NULL),
+    (6, '2024-03-17', '08:30', '16:45'),
+    (7, '2023-12-09', NULL, '20:30'),
+    (8, '2023-09-19', NULL, '20:45'),
+    (9, '2023-12-19', NULL, '21:00'),
+    (10, '2024-03-18', '09:30', '16:30');
+
+SELECT * FROM eventlog
+WHERE EVENT_DATE=CURDATE();
+
+SELECT *FROM eventlog
+WHERE EVENT_DATE =CURDATE()
+  AND CHECK_OUT <'20:30 PM';
